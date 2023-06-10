@@ -9,6 +9,7 @@ fn main() {
     // shared library.
     if let Err(err) = pkg_config::Config::new()
         .atleast_version("1.14")
+        .statik(true)
         .probe("libheif")
     {
         println!("cargo:warning={}", err);
