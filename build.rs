@@ -10,10 +10,12 @@ fn main() {
     #[allow(unused_mut)]
     #[allow(unused_variables)]
     let mut include_dirs: Vec<String> = Vec::new();
+    include_dirs.push(format!("--include-directory={}", "/opt/homebrew/Cellar/libheif/1.17.3/include"));
 
     #[cfg(not(target_os = "windows"))]
     if let Err(err) = pkg_config::Config::new()
         .atleast_version("1.16")
+        .statik(true)
         .probe("libheif")
     {
         println!("cargo:warning={}", err);
